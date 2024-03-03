@@ -1,7 +1,7 @@
 NAME=Phonebook
 CC=g++
-CFLAGS=-Wall -Wextra -Werror -std=c++98
-SRC=main.cpp
+CFLAGS=-Wall -Wextra -Werror
+SRC=main.cpp Contact.cpp Phonebook.cpp ioHelpers.cpp
 OBJ=${SRC:.cpp=.o}
 
 all: $(NAME)
