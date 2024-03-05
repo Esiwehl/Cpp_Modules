@@ -1,13 +1,12 @@
-NAME=megaphone
+NAME=Dreamjob
 CC=g++
 CFLAGS=-Wall -Wextra -Werror
-SRC=megaphone.cpp
-OBJ=${SRC:.cpp=.o}
+SRC=tests.cpp Account.cpp
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRC) -o $@ -I .
 
 clean:
 	rm -Rf $(OBJ)
