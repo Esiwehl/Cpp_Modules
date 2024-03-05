@@ -1,10 +1,9 @@
 # include "Zombie.hpp"
-
 #include <string>
 
 int main (void)
 {
-    Zombie* zack, *cody;
+    Zombie *zack, *cody;
 
     zack = newZombie("Zack");
     cody = newZombie("Cody");
