@@ -28,6 +28,11 @@ void Phonebook::ADD(){
 void Phonebook::SEARCH(){
 		int index;
 	
+		if (_contactCount == 0)
+		{
+			std::cout << "Empty" << std::endl;
+			return ;
+		}
 		std::cout << "Index     |First Name|Last Name |Nickname  " << std::endl;
 		int max = (_contactCount < 8) ? _contactCount : 8;
 		for (int idx = 0; idx < max; idx++){
@@ -42,7 +47,8 @@ void Phonebook::SEARCH(){
 
 		std::cout << "Enter the index of the contact you'd like to expose: " << std::endl;
 		std::cin >> index;
-		if (index < 0 || (index >= _contactCount && index < 8) || std::cin.fail()) {
+		// if (index < 0 || (index >= _contactCount && index < 8) || std::cin.fail()) 
+		if (index < 0 || (index >= _contactCount)){
           std::cin.clear();
 		  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
           std::cout << "Invalid index." << std::endl;

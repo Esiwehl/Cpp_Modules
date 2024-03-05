@@ -8,8 +8,9 @@ int main(int argc, char *argv[]){
         for (std::string::iterator it = str.begin(); it != str.end(); it++){
 			*it = std::toupper(*it);
 	    }
-        std::cout << str << std::endl;
+        std::cout << str; //<< std::endl
     }
+    std::cout << std::endl;
     return 0;
 }
 
