@@ -16,11 +16,10 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES)
-	@echo "${BLUE}Creating program: $@${END}"
 	@$(CC) $(INCLUDES) $(CFLAGS) -o $@ $(OBJ_FILES)
-	@echo "${GREEN}Finished!${END}"
+	@echo "${GREEN}Created program: $@${END}"
 
-obj/%.o: %.cpp $(HEADERS) | $(OBJ_DIR)
+obj/%.o: src/%.cpp $(HEADERS) | $(OBJ_DIR)
 	@$(CC) $(INCLUDES) $(CFLAGS) -c -o $@ $<
 
 $(OBJ_DIR):
@@ -34,10 +33,10 @@ fclean: clean
 	@echo "${RED}Deleting ${NAME} ${END}"
 	@$(RM) $(NAME)
 
-d:
+debug:
 	@$(MAKE) DEBUG=1 all
 
-re: fclean all d clean
+re: all clean fclean debug
 
 RED=\033[1;31m
 GREEN=\033[1;32m
