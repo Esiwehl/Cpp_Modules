@@ -1,5 +1,5 @@
 NAME=brainz
-CC=g++
+CC=c++
 CFLAGS=-Wall -Wextra -Werror
 SRC=main.cpp Zombie.cpp zombieHorde.cpp
 OBJ=${SRC:.cpp=.o}
