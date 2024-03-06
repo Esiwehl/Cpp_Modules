@@ -3,9 +3,11 @@
 
 int main (void)
 {
-    int N = 5;
+    int N = 1000000000;
     Zombie *zH = zombieHorde(N, "Jameos");
     
+    if (!zH)
+        return 1;
     for (int idx = 0; idx < N; idx++){
         zH[idx].announce();
     }
