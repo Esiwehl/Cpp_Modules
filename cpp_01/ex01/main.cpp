@@ -6,11 +6,10 @@ int main (void)
     int N = 5;
     Zombie *zH = zombieHorde(N, "Jameos");
     
-    for (int idx = 0; idx < N; idx++)
-    {
+    for (int idx = 0; idx < N; idx++){
         zH[idx].announce();
-        delete &zH[idx];
     }
 
+    delete[] zH;
     return 0;
 }
