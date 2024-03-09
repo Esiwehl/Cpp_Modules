@@ -6,7 +6,8 @@
 int main (int argc, char **argv){
 	
 	if (argc != 2){
-		std:: cerr << "Incorrect usage, try: ./harl <DEBUG|ERROR|INFO|WARNING>" << std::endl;
+		std:: cerr << "Usage: ./harlFilter <level>" << std::endl;
+		return (1);
 	}
 
 	Harl harl;

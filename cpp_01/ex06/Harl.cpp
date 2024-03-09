@@ -1,4 +1,5 @@
 #include "Harl.hpp"
+#include "Harl.hpp"
 
 void Harl::debug(void) {
 	std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!" << std::endl;
@@ -16,14 +17,30 @@ void Harl::error(void) {
 	std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
+int Harl::getLevel(std::string level) {
+	if (level == "DEBUG")
+		return DEBUG;
+	if (level == "INFO")
+		return INFO;
+	if (level == "WARNING")
+		return WARNING;
+	if (level == "ERROR")
+		return ERROR;
+	return INVALID;
+}
+
 void Harl::complain(std::string level) {
-	void (Harl::*complaints[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-	std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	
-	for (int idx = 0; idx < 4; idx++) {
-		if (levels[idx] == level) {
-			(this->*complaints[idx])();
+	switch (getLevel(level)) {
+		case DEBUG:
+			debug();
+		case INFO:
+			info();
+		case WARNING:
+			warning();
+		case ERROR:
+			error();
 			break;
-		}
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 	}
 }
