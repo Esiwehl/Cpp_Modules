@@ -14,7 +14,7 @@ int main (void)
     randomChump("Brody");
     randomChump("Zames");
 
-    delete zack;
     delete cody;
+    delete zack;
     return 0;
 }

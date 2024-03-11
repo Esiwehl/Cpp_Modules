@@ -12,6 +12,7 @@ int main(void )
 
     Weapon clubjim = Weapon("LaserBeam");
     HumanB jim("Jim");
+    jim.attack();
     jim.setWeapon(clubjim);
     jim.attack();
     clubjim.setType("Sword");

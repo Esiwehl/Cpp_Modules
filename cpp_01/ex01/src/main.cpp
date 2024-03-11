@@ -3,7 +3,7 @@
 
 int main (void)
 {
-    int N = 1000000000;
+    int N = 10;
     Zombie *zH = zombieHorde(N, "Jameos");
     
     if (!zH)

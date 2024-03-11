@@ -2,12 +2,12 @@ NAME = harl
 HEADER_FILES = Harl.hpp
 SRC_FILES = main.cpp Harl.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)
-HEADERS = $(HEADER_FILES:%=%)
+HEADERS = $(HEADER_FILES:%=inc/%)
 OBJ_DIR = obj
 RM = rm -Rf
 
 CC = c++
-INCLUDES = -I .
+INCLUDES = -I ./inc
 CFLAGS = -Wall -Werror -Wextra
 ifdef DEBUG
 CFLAGS += -g -fsanitize=address
@@ -19,7 +19,7 @@ $(NAME): $(OBJ_FILES)
 	@$(CC) $(INCLUDES) $(CFLAGS) -o $@ $(OBJ_FILES)
 	@echo "${GREEN}Created program: $@${END}"
 
-obj/%.o: %.cpp $(HEADERS) | $(OBJ_DIR)
+obj/%.o:src/%.cpp $(HEADERS) | $(OBJ_DIR)
 	@$(CC) $(INCLUDES) $(CFLAGS) -c -o $@ $<
 
 $(OBJ_DIR):

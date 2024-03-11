@@ -17,9 +17,8 @@ endif
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES)
-	@echo "${BLUE}Creating program: $@${END}"
-	@$(CC) $(INC) $(CFLAGS) -o $@ $(OBJ_FILES)
-	@echo "${GREEN}Finished!${END}"
+	@$(CC) $(INCLUDES) $(CFLAGS) -o $@ $(OBJ_FILES)
+	@echo "${GREEN}Created program: $@${END}"
 
 obj/%.o: src/%.cpp $(HEADERS) | $(OBJ_DIR)
 	@$(CC) $(INC) $(CFLAGS) -c -o $@ $<

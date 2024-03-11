@@ -19,7 +19,7 @@ $(NAME): $(OBJ_FILES)
 	@$(CC) $(INCLUDES) $(CFLAGS) -o $@ $(OBJ_FILES)
 	@echo "${GREEN}Created program: $@${END}"
 
-obj/%.o: src/%.cpp $(HEADERS) | $(OBJ_DIR)
+obj/%.o: %.cpp $(HEADERS) | $(OBJ_DIR)
 	@$(CC) $(INCLUDES) $(CFLAGS) -c -o $@ $<
 
 $(OBJ_DIR):
