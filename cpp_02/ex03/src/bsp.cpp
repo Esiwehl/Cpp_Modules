@@ -11,7 +11,7 @@ bool sameSide(const Point& p1, const Point& p2, const Point& a, const Point& b) 
 bool bsp(Point const a, Point const b, Point const c, Point const point){
     bool aB = sameSide(point, a, b, c);
     bool bC = sameSide(point, b, a, c);
-    bool cA = sameSide(point, c, a, b);
+    bool cA = sameSide(point, c, b, a);
 
     return (aB && bC && cA);
 }

@@ -11,8 +11,8 @@ int main() {
 	Point const yesP(4.0f, 2.0f);
 	Point const noP(1.5f, 2.0f);
 
-	bool result = bsp(a, b, c, noP);
-	std::cout << noP << ((result) ? "Is" : "Is not") << " in the triangle" << std::endl;
+	bool result = bsp(a, b, c, yesP);
+	std::cout << yesP << ((result) ? "Is" : "Is not") << " in the triangle" << std::endl;
 
 	return 0;
 }
