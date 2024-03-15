@@ -1,11 +1,22 @@
 #include "Fixed.hpp"
+#include <cmath>
 
 // Constructors and Destructor
-Fixed::Fixed() : _rawValue(0) {}
+Fixed::Fixed() : _rawValue(0) {
+	std::cout << "Default constructor called" << std::endl;
+}
 
-Fixed::Fixed(const int intVal) : _rawValue(intVal << _fractionalBit) {}
+Fixed::Fixed(const int intVal) : _rawValue(intVal << _fractionalBit) {
+	std::cout << "Int constructor called" << std::endl;
+}
 
-Fixed::Fixed(const float floatVal) : _rawValue(roundf(floatVal * (1 << _fractionalBit))) {}
+Fixed::Fixed(const float floatVal) : _rawValue(roundf(floatVal * (1 << _fractionalBit))) {
+	std::cout << "Float constructor called" << std::endl;
+}
+
+Fixed::Fixed(const Fixed& f) : _rawValue(f.getRawBits()) {
+	std::cout << "Copy constructor called" << std::endl;
+}
 
 Fixed::~Fixed() {
 	std::cout << "Destructor called" << std::endl;
@@ -83,19 +94,19 @@ Fixed Fixed::operator--(int) { // Post-decrement
 }
 
 // Min|max functions
-static Fixed& Fixed::min(Fixed& a, Fixed& b) {
+Fixed& Fixed::min(Fixed& a, Fixed& b) {
 	return (a < b) ? a : b;
 }
 
-static const Fixed& Fixed::min(const Fixed& a, const Fixed& b) {
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b) {
 	return (a < b) ? a : b;
 }
 
-static Fixed& Fixed::max(Fixed& a, Fixed& b) {
+Fixed& Fixed::max(Fixed& a, Fixed& b) {
 	return (a > b) ? a : b;
 }
 
-static const Fixed& Fixed::max(const Fixed& a, const Fixed& b) {
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b) {
 	return (a > b) ? a : b;
 }
 
