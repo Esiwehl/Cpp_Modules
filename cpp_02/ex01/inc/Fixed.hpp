@@ -11,11 +11,10 @@ class Fixed{
     public:
         Fixed();
         Fixed(const Fixed& f);
+        Fixed& operator=(const Fixed&);
         Fixed(const int num);
         Fixed(const float num);
 
-        Fixed& operator=(const Fixed&);
-        friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed); //What does it mean when you overload the ostream?
         ~Fixed();
 
         int toInt( void ) const;
@@ -24,5 +23,7 @@ class Fixed{
         int getRawBits( void ) const;
         void setRawBits(int const raw);
 };
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 
 #endif

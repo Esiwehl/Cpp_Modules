@@ -24,3 +24,8 @@ int Fixed::getRawBits() const {
     std::cout << "getRawBits member function called" << std::endl;
     return _fpValue;
 }
+
+void Fixed::setRawBits(int val) {
+    std::cout << "setRawBits member function called" << std::endl;
+    _fpValue = val;
+}
