@@ -58,7 +58,7 @@ void subject(){
 
 int main() {
 
-	// subject();
+	subject();
 	// comparison();
 	// arithmetics();
 
