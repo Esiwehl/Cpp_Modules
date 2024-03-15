@@ -60,6 +60,15 @@ Fixed Fixed::operator/(const Fixed& other) const {
 	return Fixed(this->toFloat() / other.toFloat());
 }
 
+Fixed& Fixed::operator=(const Fixed& f) {
+	std::cout << "Copy assignment operator called" << std::endl;
+	if (this != &f){
+		this->_rawValue = f.getRawBits();
+	}
+	return (*this);
+}
+
+
 bool Fixed::isEqualTo(const Fixed& other) const { return _rawValue == other._rawValue; }
 bool Fixed::isLessThan(const Fixed& other) const { return _rawValue < other._rawValue; }
 
