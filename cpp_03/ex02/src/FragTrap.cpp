@@ -8,6 +8,26 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name) {
     std::cout << BLUE << "FragTrap " << this->_name << " constructed." << ENDC << std::endl;
 }
 
+FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other) {
+    _hitPoints = other._hitPoints;
+    _energyPoints = other._energyPoints;
+    _attackDamage = other._attackDamage;
+    std::cout << BLUE << "FragTrap copy constructor called: " << this->_name <<  ENDC << std::endl;
+}
+
+FragTrap& FragTrap::operator=(const FragTrap& other) {
+    if (this != &other){
+        ClapTrap::operator=(other);
+
+        _hitPoints = other._hitPoints;
+        _energyPoints = other._energyPoints;
+        _attackDamage = other._attackDamage;
+
+         std::cout << BLUE << "FragTrap copy assignment operator called: " << _name << " assigned." << ENDC <<  std::endl;
+    }
+    return (*this);
+}
+
 FragTrap::~FragTrap() {
     std::cout << BLUE << "FragTrap " << this->_name << " destructed."<< ENDC << std::endl;
 }
