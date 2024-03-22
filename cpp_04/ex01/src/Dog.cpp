@@ -23,5 +23,6 @@ void Dog::makeSound() const {
 }
 
 Dog::~Dog() {
+    delete _b;
     std::cout << "Dog disappeared into the void." << std::endl;
 }
