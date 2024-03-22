@@ -1,7 +1,7 @@
 #include "Animal.hpp"
 #include "Cat.hpp"
 
-Cat::Cat() {
+Cat::Cat() : _b(new Brain()){
     _type = "Cat";
     std::cout << "Cat default constructor called" << std::endl;
 }
@@ -23,5 +23,6 @@ void Cat::makeSound() const {
 }
 
 Cat::~Cat() {
+    delete _b;
     std::cout << "Cat disappeared into the void." << std::endl;
 }
