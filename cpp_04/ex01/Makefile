@@ -1,6 +1,6 @@
-NAME = Animals
-HEADER_FILES = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp
-SRC_FILES = Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp main.cpp
+NAME = Brain
+HEADER_FILES = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp Brain.hpp
+SRC_FILES = Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp main.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)
 HEADERS = $(HEADER_FILES:%=inc/%)
 OBJ_DIR = obj
