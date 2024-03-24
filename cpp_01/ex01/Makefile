@@ -37,7 +37,9 @@ fclean: clean
 debug:
 	@$(MAKE) --no-print-directory DEBUG=1 all
 
-re: all clean fclean debug
+re: fclean all
+
+.PHONY: all clean fclean debug run
 
 RED=\033[1;31m
 GREEN=\033[1;32m
