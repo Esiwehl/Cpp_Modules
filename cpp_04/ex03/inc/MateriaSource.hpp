@@ -5,7 +5,11 @@
 
 class MateriaSource : public IMateriaSource {
 private:
-    AMateria* slots[4];
+    static int const _maxMateria = 4;
+    AMateria* _slots[_maxMateria];
+
+    void _initEmptySlots();
+    void _deleteSlots();
 
 public:
     MateriaSource();
@@ -15,6 +19,7 @@ public:
 
     virtual void learnMateria(AMateria*);
     virtual AMateria* createMateria(std::string const & type);
+    void displayKnownMateria();
 };
 
 #endif
