@@ -1,29 +1,32 @@
 #include "MateriaSource.hpp"
+#include <iostream>
 
 MateriaSource::MateriaSource() {
-    for (int idx = 0; idx < 4; ++idx) {
-        slots[idx] = nullptr;
-    }
+    std::cout << "MateriaSource default constructor called" << std::endl;
+    this->_initEmptySlots();
 }
 
 MateriaSource::MateriaSource(const MateriaSource& other) {
-    for (int idx = 0; idx < 4; ++idx) {
-        if (other.slots[idx]) {
-            slots[idx] = other.slots[idx]->clone();
+    std::cout << "MateriaSource copy constructor called" << std::endl;
+    for (int idx = 0; idx < _maxMateria; ++idx) {
+        if (other._slots[idx]) {
+            _slots[idx] = other._slots[idx]->clone();
         } else {
-            slots[idx] = nullptr;
+            _slots[idx] = nullptr;
         }
     }
 }
 
 MateriaSource& MateriaSource::operator=(const MateriaSource& other) {
+    std::cout << "MateriaSource assignment operator overload called"
+        << std::endl;
     if (this != &other) {
-        for (int idx = 0; idx < 4; ++idx) {
-            delete slots[idx];
-            if (other.slots[idx]) {
-                slots[idx] = other.slots[idx]->clone();
+        for (int idx = 0; idx < _maxMateria; ++idx) {
+            delete _slots[idx];
+            if (other._slots[idx]) {
+                _slots[idx] = other._slots[idx]->clone();
             } else {
-                slots[idx] = nullptr;
+                _slots[idx] = nullptr;
             }
         }
     }
@@ -31,25 +34,78 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& other) {
 }
 
 MateriaSource::~MateriaSource() {
-    for (int idx = 0; idx < 4; ++idx) {
-        delete slots[idx];
-    }
+    std::cout << "MateriaSource destructor called";
+    this->_deleteSlots();
 }
 
-void MateriaSource::learnMateria(AMateria* m) {
-    for (int idx = 0; idx < 4 && slots[idx] != nullptr; ++idx) {
-        if (slots[idx] == nullptr) {
-            slots[idx] = m;
-            break;
-        }
-    }
+void MateriaSource::learnMateria(AMateria * materia)
+{
+	if (!materia)
+	{
+		std::cout << "What's there to learn..?" << std::endl;
+		return ;
+	}
+	for (int i = 0; i < this->_maxMateria; i++)
+	{
+		if (this->_slots[i] == nullptr)
+		{
+			this->_slots[i] = materia;
+			std::cout << "MateriaSource learned the " << materia->getType()
+				<< " materia recipe." << std::endl;
+			return ;
+		}
+	}
+	std::cout << "I used all my braincells." << std::endl;
+	delete materia;
+	return ;
 }
 
-AMateria* MateriaSource::createMateria(std::string const & type) {
-    for (int idx = 0; idx < 4; ++idx) {
-        if (slots[idx] != nullptr && slots[idx]->getType() == type) {
-            return slots[idx]->clone();
-        }
-    }
-    return nullptr;
+AMateria *	MateriaSource::createMateria(std::string const & type)
+{
+	for (int i = 0; i < this->_maxMateria; i++)
+	{
+		if (this->_slots[i] && this->_slots[i]->getType() == type)
+		{
+			std::cout << "MateriaSource creating " << type
+				<< " materia." << std::endl;
+			return (this->_slots[i]->clone());
+		}
+	}
+	std::cout << "MateriaSource does not know the type \""
+		<< type << "\"." << std::endl;
+	return (nullptr);
+}
+
+void MateriaSource::_initEmptySlots()
+{
+	for (int idx = 0; idx < this->_maxMateria; idx++)
+		this->_slots[idx] = nullptr;
+	return ;
+}
+
+void MateriaSource::_deleteSlots(void)
+{
+	for (int idx = 0; idx < this->_maxMateria; idx++)
+	{
+		if (this->_slots[idx] != nullptr)
+		{
+			delete this->_slots[idx];
+			this->_slots[idx] = nullptr;
+		}
+	}
+	return ;
+}
+
+void MateriaSource::displayKnownMateria() {
+    std::cout << "MateriaSource knows the following recipes:" << std::endl;
+	for (int idx = 0; idx < this->_maxMateria; idx++)
+	{
+		std::cout << "\t[" << idx << "] ";
+		if (this->_slots[idx] == nullptr)
+			std::cout << "Empty slot.";
+		else
+			std::cout << this->_slots[idx]->getType() << " materia.";
+		std::cout << std::endl;
+	}
+	return ;
 }
