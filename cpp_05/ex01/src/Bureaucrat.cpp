@@ -58,6 +58,15 @@ void Bureaucrat::signForm(Form& f) {
 	}
 }
 
+//Exceptions
+const char* Bureaucrat::GradeTooLowException::what() const noexcept {
+	return "Grade too low! Keep grinding";
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const noexcept {
+	return "Grade too high! You've plateaud here, time for another job.";
+}
+
 // Non-member functions
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b){
 	os << b.getName() << ", bureaucrat grade " << b.getGrade() << std::endl;

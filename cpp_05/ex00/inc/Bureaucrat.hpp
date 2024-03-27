@@ -27,16 +27,12 @@ class Bureaucrat {
 
 		class GradeTooLowException : public std::exception {
 			public:
-				const char *what() const noexcept override {
-					return "Grade too low!";
-				}
+				const char *what() const noexcept override;
 		};
 
 		class GradeTooHighException : public std::exception {
 			public:
-				const char *what() const noexcept override {
-					return "Grade too high!";
-				}
+				const char *what() const noexcept override;
 		};
 };
 

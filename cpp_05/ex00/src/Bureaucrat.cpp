@@ -26,10 +26,6 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 	return (*this);
 }
 
-// void Bureaucrat::setName(std::string& name) {
-// 	_name = name;
-// }
-
 void Bureaucrat::setGrade(int grade) {
 	_grade = grade;
 }
@@ -50,6 +46,15 @@ void Bureaucrat::incrementGrade() {
 void Bureaucrat::decrementGrade() {
 	if (_grade >= 150) throw GradeTooLowException();
 	++this->_grade;
+}
+
+//Exceptions
+const char* Bureaucrat::GradeTooLowException::what() const noexcept {
+	return "Grade too low!";
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const noexcept {
+	return "Grade too high!";
 }
 
 // Non-method functions
