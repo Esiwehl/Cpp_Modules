@@ -11,7 +11,7 @@ RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", ROB_SI
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm("RobotomyRequestForm " + target, ROB_SIGN_GRADE, ROB_EXEC_GRADE), _target(target) {
-	std::cout << "RobotomyRequestForm default constructor called" << std::endl;
+	std::cout << "RobotomyRequestForm parameterized constructor called" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AForm(other), _target(other._target) {

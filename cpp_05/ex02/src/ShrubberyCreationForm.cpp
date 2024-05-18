@@ -9,7 +9,7 @@ ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("ShrubberyCreationForm " + target, SHRUB_SIGN_GRADE, SHRUB_EXEC_GRADE), _target(target) {
-	std::cout << "ShrubberyCreationForm default constructor called" << std::endl;
+	std::cout << "ShrubberyCreationForm parameterized constructor called" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other) : AForm(other), _target(other._target) {
