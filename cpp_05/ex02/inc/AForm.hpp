@@ -7,14 +7,13 @@
 # include "Bureaucrat.hpp"
 
 class AForm {
-	private:
+	protected:
 		const std::string _name;
 		const int _signGrade;
 		const int _execGrade;
 		bool _isSigned;
 
-	protected:
-		virtual void beExecuted() const = 0;
+		void checkFormExecution(const Bureaucrat &executor) const;
 
 	public:
 		AForm();
@@ -30,20 +29,28 @@ class AForm {
 		const std::string getName() const;
 
 		void beSigned(Bureaucrat& b);
+
 		void execute(Bureaucrat const& executor) const;
+		virtual void beExecuted() const = 0;
+
+		class FormNotSignedException : public std::exception {
+    		public:
+				const char* what() const noexcept override;
+		};
+
+		class FormAlreadySignedException : public std::exception {
+    		public:
+        		const char* what() const noexcept override;
+    	};
 
 		class GradeTooHighException : public std::exception {
 			public:
-				const char* what() const noexcept override {
-					return "Grade too high!";
-				}
+				const char* what() const noexcept override;
 		};
 
 		class GradeTooLowException : public std::exception {
 			public:
-				const char* what() const noexcept override {
-					return "Grade too low!";
-				}
+				const char* what() const noexcept override;
 		};
 };
 

@@ -1,6 +1,6 @@
 NAME = Form
-HEADER_FILES = Bureaucrat.hpp Form.hpp
-SRC_FILES = Bureaucrat.cpp Form.cpp main.cpp
+HEADER_FILES = PresidentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp Bureaucrat.hpp AForm.hpp
+SRC_FILES = PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Bureaucrat.cpp AForm.cpp main.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)
 HEADERS = $(HEADER_FILES:%=inc/%)
 OBJ_DIR = obj

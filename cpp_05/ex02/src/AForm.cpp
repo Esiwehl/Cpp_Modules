@@ -17,6 +17,7 @@ AForm::AForm(const AForm& other) : _name(other._name + "_copy"), _signGrade(othe
 AForm::~AForm() {
 	std::cout << "AForm destructor called" << std::endl;
 }
+
 // AForm& AForm::operator=(const AForm& other) = delete;
 
 int AForm::getSignGrade() const {
@@ -35,11 +36,40 @@ const std::string AForm::getName() const {
 }
 
 void AForm::beSigned(Bureaucrat& b) {
-	if (b.getGrade() >= _signGrade) {
+	if (_isSigned == true){
+		throw FormAlreadySignedException();
+	} else if (b.getGrade() <= _signGrade) {
 		_isSigned = true;
 	} else {
 		throw GradeTooLowException();
 	}
+}
+
+void AForm::checkFormExecution(const Bureaucrat &executor) const {
+	if (_isSigned == false) throw FormNotSignedException();
+	if (executor.getGrade() > _execGrade) throw GradeTooLowException();
+}
+
+void AForm::execute(Bureaucrat const& executor) const {
+	checkFormExecution(executor);
+	beExecuted();
+}
+
+//Exceptions
+const char* AForm::FormNotSignedException::what() const noexcept {
+	return "Form has not been signed!";
+}
+
+const char* AForm::FormAlreadySignedException::what() const noexcept {
+	return "Form is already signed!";
+}
+
+const char* AForm::GradeTooHighException::what() const noexcept {
+	return "Grade too high!";
+}
+
+const char* AForm::GradeTooLowException::what() const noexcept {
+	return "Grade too low!";
 }
 
 // Non-member function
