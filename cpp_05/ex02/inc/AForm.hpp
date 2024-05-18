@@ -6,7 +6,7 @@
 
 # include "Bureaucrat.hpp"
 
-class Form {
+class AForm {
 	private:
 		const std::string _name;
 		const int _signGrade;
@@ -17,12 +17,12 @@ class Form {
 		virtual void beExecuted() const = 0;
 
 	public:
-		Form();
-		Form(const std::string& name, int signGrade, int execGrade);
-		Form(const Form& other);
-		virtual ~Form();
+		AForm();
+		AForm(const std::string& name, int signGrade, int execGrade);
+		AForm(const AForm& other);
+		virtual ~AForm();
 
-		Form& operator=(const Form& other) = delete;
+		AForm& operator=(const AForm& other) = delete;
 
 		int getSignGrade() const;
 		int getExecGrade() const;
@@ -30,6 +30,7 @@ class Form {
 		const std::string getName() const;
 
 		void beSigned(Bureaucrat& b);
+		void execute(Bureaucrat const& executor) const;
 
 		class GradeTooHighException : public std::exception {
 			public:
@@ -44,9 +45,8 @@ class Form {
 					return "Grade too low!";
 				}
 		};
-
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& f);
+std::ostream& operator<<(std::ostream& os, const AForm& f);
 
 #endif
