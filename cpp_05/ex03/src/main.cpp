@@ -1,5 +1,6 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "Intern.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
@@ -130,13 +131,15 @@ void ex02_pres() {
     }
 }
 
+void ex03() {
+	Intern someRandomIntern;
+	AForm* rrf;
+	rrf = someRandomIntern.makeForm("robotomy", "Bender");
+	rrf = someRandomIntern.makeForm("RobotomyRequest", "Bender");
+	delete (rrf);
+}
+
 int main() {
-	ex02_shrub();
-	// std::cout << "\n---------------------------------------------\n" <<
-	// std::endl;
-	// ex02_rob();
-	// std::cout << "\n---------------------------------------------\n" <<
-	// std::endl;
-	// ex02_pres();
+	ex03();
 	return 0;
 }
