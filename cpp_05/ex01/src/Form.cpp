@@ -35,12 +35,23 @@ const std::string Form::getName() const {
 }
 
 void Form::beSigned(Bureaucrat& b) {
-	if (b.getGrade() >= _signGrade) {
+	if (b.getGrade() <= _signGrade) {
 		_isSigned = true;
 	} else {
 		throw GradeTooLowException();
 	}
 }
+
+//Exceptions
+const char* Form::GradeTooLowException::what() const noexcept {
+	return "Grade too low!";
+}
+
+const char* Form::GradeTooHighException::what() const noexcept {
+	return "Grade too high!";
+}
+
+
 
 // Non-member function
 std::ostream& operator<<(std::ostream& os, const Form& f) {

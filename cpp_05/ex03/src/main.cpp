@@ -105,25 +105,19 @@ void ex02_rob() {
 
 void ex02_pres() {
 	Bureaucrat president("President Zaphod", 1);
-    
-    // Create the PresidentialPardonForm
     PresidentialPardonForm pardon("Ford Prefect");
     
-    // Display initial state
     std::cout << president << std::endl;
     std::cout << pardon << std::endl;
 
-    // Attempt to sign the form
     try {
         president.signForm(pardon);
     } catch (const std::exception& e) {
         std::cout << "Error: " << e.what() << std::endl;
     }
 
-    // Display form state after signing attempt
     std::cout << pardon << std::endl;
 
-    // Attempt to execute the form
     try {
         president.executeForm(pardon);
     } catch (const std::exception& e) {
