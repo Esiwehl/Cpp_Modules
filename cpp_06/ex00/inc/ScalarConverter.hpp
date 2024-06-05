@@ -20,10 +20,12 @@ private:
 	~ScalarConverter() = default;
 
     static bool isInteger(const std::string& input);
+    static bool isFloat(const std::string& input);
     static bool isDouble(const std::string& input);
     static bool isChar(const std::string& input);
 
     static void convertFromInt(const std::string& input);
+    static void convertFromFloat(const std::string& input);
     static void convertFromDouble(const std::string& input);
     static void convertFromChar(const std::string& input);
 
