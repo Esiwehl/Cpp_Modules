@@ -1,11 +1,13 @@
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
 
+#include <cstdint>
+
 template <typename T>
 class Array {
 	private:
-		T* _data;
-		unsigned int _size;
+		T*			_data;
+		uint16_t	_size;
 		
 		void clear();
 	

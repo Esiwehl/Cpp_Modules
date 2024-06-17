@@ -1,5 +1,5 @@
-#include <iostream>
 #include "iter.hpp"
+#include <iostream>
 
 // void printElement(char element){
 //     std::cout << element << " ";

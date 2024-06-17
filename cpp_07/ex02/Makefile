@@ -1,6 +1,6 @@
 NAME = Array
 HEADER_FILES = Array.hpp
-SRC_FILES = main.cpp
+SRC_FILES = intra_main.cpp
 OBJ_FILES = $(SRC_FILES:%.cpp=obj/%.o)
 HEADERS = $(HEADER_FILES:%=inc/%)
 OBJ_DIR = obj
