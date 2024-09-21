@@ -4,7 +4,7 @@
 # include <vector>
 # include <stdexcept>
 # include <algorithm>
-# include <numeric>
+# include <limits>
 # include <iterator>
 
 class Span {
