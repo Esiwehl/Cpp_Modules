@@ -43,7 +43,7 @@ int main() {
 
 	try {
 		std::deque<int>::iterator it = easyfind(deq, 100);
-		std::cout << "Found in array: " << *it << std::endl;
+		std::cout << "Found in deq: " << *it << std::endl;
 	} catch (const std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
