@@ -13,80 +13,74 @@ void PmergeMe::fordJohnsonSortVector(std::vector<int>& vec) {
 		pairs.push_back({vec.back(), vec.back()});
 	}
 
-	std::vector<int> mainSequence;
-	for (const auto& pair : pairs) {
-		mainSequence.push_back(pair.second);
+	std::vector<int> biggestValues;
+	for (const std::pair<int, int>& pair : pairs) {
+		biggestValues.push_back(pair.second);
 	}
-	std::sort(mainSequence.begin(), mainSequence.end()); 
+	std::sort(biggestValues.begin(), biggestValues.end()); 
 
-	for (const auto& pair : pairs) {
-		auto it = std::upper_bound(mainSequence.begin(), mainSequence.end(), pair.first);
-		mainSequence.insert(it, pair.first); 
+	for (const std::pair<int, int>& pair : pairs) {
+		std::vector<int>::iterator it = std::upper_bound(biggestValues.begin(), biggestValues.end(), pair.first);
+		biggestValues.insert(it, pair.first); 
 	}
 
-	vec = mainSequence;
+	vec = biggestValues;
 }
 
 void PmergeMe::fordJohnsonSortList(std::list<int>& lst) {
 	if (lst.size() <= 1) return;
 
 	std::list<std::pair<int, int>> pairs;
-	auto it = lst.begin();
+	std::list<int>::iterator it = lst.begin();
 	while (it != lst.end()) {
 		int first = *it++;
 		int second = (it != lst.end()) ? *it++ : first;
 		pairs.push_back(std::minmax(first, second)); 
 	}
 
-	std::list<int> mainSequence;
-	for (const auto& pair : pairs) {
-		mainSequence.push_back(pair.second);
+	std::list<int> biggestValues;
+	for (const struct std::pair<int, int>& pair : pairs) {
+		biggestValues.push_back(pair.second);
 	}
-	mainSequence.sort(); 
+	biggestValues.sort(); 
 
-	for (const auto& pair : pairs) {
-		auto insertPos = std::upper_bound(mainSequence.begin(), mainSequence.end(), pair.first);
-		mainSequence.insert(insertPos, pair.first);
+	for (const struct std::pair<int, int>& pair : pairs) {
+		std::list<int>::iterator insertPos = std::upper_bound(biggestValues.begin(), biggestValues.end(), pair.first);
+		biggestValues.insert(insertPos, pair.first);
 	}
 
-	lst = mainSequence;
+	lst = biggestValues;
 }
 
-// Optimized Ford-Johnson for std::list
 void PmergeMe::fordJohnsonSort(std::list<int>& lst) {
     if (lst.size() <= 1) return;
 
-    // Step 1: Pair elements and sort each pair with direct iterator manipulation
     std::list<std::pair<int, int>> pairs;
-    auto it = lst.begin();
+    std::list<int>::iterator it = lst.begin();
     while (it != lst.end()) {
         int first = *it++;
         int second = (it != lst.end()) ? *it++ : first;
         pairs.push_back(std::minmax(first, second)); 
     }
 
-    // Step 2: Merge larger elements directly using list's efficient insertion
-    std::list<int> mainSequence;
-    for (const auto& pair : pairs) {
-        mainSequence.push_back(pair.second);
+    std::list<int> biggestValues;
+    for (const struct std::pair<int, int>& pair : pairs) {
+        biggestValues.push_back(pair.second);
     }
-    mainSequence.sort();
+    biggestValues.sort();
 
-    // Step 3: Efficient insertion using splice
-    for (const auto& pair : pairs) {
-        auto insertPos = std::find_if(mainSequence.begin(), mainSequence.end(), 
+    for (const struct std::pair<int, int>& pair : pairs) {
+        std::list<int>::iterator insertPos = std::find_if(biggestValues.begin(), biggestValues.end(), 
                                       [&pair](int val) { return val > pair.first; });
-        mainSequence.insert(insertPos, pair.first);
+        biggestValues.insert(insertPos, pair.first);
     }
 
-    lst = std::move(mainSequence);
+    lst = std::move(biggestValues);
 }
 
-// Optimized Ford-Johnson for std::vector
 void PmergeMe::fordJohnsonSort(std::vector<int>& vec) {
     if (vec.size() <= 1) return;
 
-    // Step 1: Pair elements and sort each pair, use direct indexing
     std::vector<std::pair<int, int>> pairs;
     for (size_t i = 0; i < vec.size() - 1; i += 2) {
         pairs.push_back(std::minmax(vec[i], vec[i + 1])); 
@@ -96,26 +90,26 @@ void PmergeMe::fordJohnsonSort(std::vector<int>& vec) {
     }
 
     // Step 2: Use contiguous memory access for merging
-    std::vector<int> mainSequence;
-    mainSequence.reserve(vec.size()); // Reserve memory upfront to avoid reallocations
-    for (const auto& pair : pairs) {
-        mainSequence.push_back(pair.second);
+    std::vector<int> biggestValues;
+    biggestValues.reserve(vec.size()); // Reserve memory upfront to avoid reallocations
+    for (const std::pair<int, int>& pair : pairs) {
+        biggestValues.push_back(pair.second);
     }
-    std::sort(mainSequence.begin(), mainSequence.end());
+    std::sort(biggestValues.begin(), biggestValues.end());
 
     // Step 3: Minimize insertion costs by batching insertions
-    for (const auto& pair : pairs) {
-        auto it = std::upper_bound(mainSequence.begin(), mainSequence.end(), pair.first);
-        mainSequence.insert(it, pair.first);
+    for (const std::pair<int, int>& pair : pairs) {
+        std::vector<int>::iterator it = std::upper_bound(biggestValues.begin(), biggestValues.end(), pair.first);
+        biggestValues.insert(it, pair.first);
     }
 
-    vec = std::move(mainSequence); // Use move semantics to optimize assignment
+    vec = std::move(biggestValues); // Use move semantics to optimize assignment
 }
 
 void PmergeMe::sortOptimized(std::vector<int>& vec) {
-	auto start = std::chrono::high_resolution_clock::now();
+	std::chrono::_V2::system_clock::time_point start = std::chrono::high_resolution_clock::now();
 	fordJohnsonSort(vec);
-	auto end = std::chrono::high_resolution_clock::now();
+	std::chrono::_V2::system_clock::time_point end = std::chrono::high_resolution_clock::now();
 	double duration = std::chrono::duration<double, std::micro>(end - start).count();
 	std::cout << "Time to process with std::vector: " << duration << " µs" << std::endl;
 }
@@ -125,7 +119,7 @@ void PmergeMe::sortOptimized(std::list<int>& lst) {
 	fordJohnsonSort(lst);
 	auto end = std::chrono::high_resolution_clock::now();
 	double duration = std::chrono::duration<double, std::micro>(end - start).count();
-	std::cout << "Time to process with std::vector: " << duration << " µs" << std::endl;
+	std::cout << "Time to process with std::list: " << duration << " µs" << std::endl;
 }
 
 void PmergeMe::sortVector(std::vector<int>& vec) {

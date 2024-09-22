@@ -9,8 +9,8 @@ int main(int argc, char** argv) {
 		return 1;
 	}
 
-	std::vector<int> vec;
-	std::list<int> lst;
+	std::list<int>		lst;
+	std::vector<int>	vec;
 
 	for (int i = 1; i < argc; ++i) {
 		try {
@@ -27,14 +27,14 @@ int main(int argc, char** argv) {
 	sorter.sortVector(vec);
 	sorter.sortList(lst);
 
-	sorter.printResults(vec, lst);
+	// sorter.printResults(vec, lst);
 	std::cout << std::endl << "_____________________________" << std::endl;
 
 	PmergeMe sorter2;
 	sorter2.sortOptimized(vec);
 	sorter2.sortOptimized(lst);
 
-	sorter2.printResults(vec, lst);
+	// sorter2.printResults(vec, lst);
 
 	return 0;
 }
