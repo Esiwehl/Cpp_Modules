@@ -40,6 +40,11 @@ void BitcoinExchange::processInputFile(const std::string &filename) {
 		return;
 	}
 
+	if (_historical_data.empty()) {
+		std::cerr << "No database found, terminating here." << std::endl;
+		return;
+	}
+
 	std::string line;
 	if (getline(file, line)) {
 		//Skipping first line
